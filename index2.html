@@ -1,27 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Administrador Trivo</title>
-  <link rel="stylesheet" href="estilo.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    #formulario {
+      display: none;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      width: 80%;
+      max-width: 300px;
+    }
+  </style>
 </head>
 <body>
   <div id="auth">
     <h2>Ingresa la clave para acceder</h2>
-    <input type="password" id="accessKey" placeholder="Clave">
+    <input type="password" id="accesoClave" placeholder="Clave de acceso" />
+    <br />
     <button onclick="verificarClave()">Entrar</button>
   </div>
 
-  <div id="formulario" style="display:none;">
+  <div id="formulario">
     <h2>Subir nuevo producto</h2>
-    <input type="text" id="nombre" placeholder="Nombre del producto"><br>
-    <input type="number" id="precio" placeholder="Precio"><br>
-    <input type="text" id="descripcion" placeholder="Descripción"><br>
-    <input type="text" id="imagen" placeholder="URL de la imagen"><br>
-    <input type="text" id="estado" placeholder="Estado"><br>
+    <input type="text" id="nombre" placeholder="Nombre del producto" />
+    <input type="number" id="precio" placeholder="Precio" />
+    <input type="text" id="imagen" placeholder="URL de imagen" />
+    <input type="text" id="estado" placeholder="Estado (ej: disponible)" />
+    <br />
     <button onclick="subirProducto()">Subir producto</button>
   </div>
 
-  <script src="admin.js"></script>
+  <script>
+    const claveCorrecta = "trivo2025!";
+
+    function verificarClave() {
+      const claveIngresada = document.getElementById("accesoClave").value;
+      if (claveIngresada === claveCorrecta) {
+        document.getElementById("auth").style.display = "none";
+        document.getElementById("formulario").style.display = "block";
+      } else {
+        alert("Clave incorrecta. Intenta nuevamente.");
+      }
+    }
+
+    function subirProducto() {
+      const nombre = document.getElementById("nombre").value;
+      const precio = document.getElementById("precio").value;
+      const imagen = document.getElementById("imagen").value;
+      const estado = document.getElementById("estado").value;
+
+      if (nombre && precio && imagen && estado) {
+        alert(`Producto "${nombre}" subido correctamente.\n\n(Nota: falta conexión real a base de datos)`);
+        // Aquí puedes conectar con una base de datos como Firebase si lo deseas en el futuro.
+      } else {
+        alert("Por favor, completa todos los campos.");
+      }
+    }
+  </script>
 </body>
 </html>
