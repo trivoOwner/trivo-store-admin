@@ -5,64 +5,69 @@
   <title>Administrador Trivo</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
+      font-family: Arial;
+      padding: 40px;
+      background-color: #f9f9f9;
     }
-    #formulario {
-      display: none;
-    }
+    #formulario { display: none; }
     input, button {
-      margin: 10px;
-      padding: 10px;
-      width: 80%;
-      max-width: 300px;
+      margin: 5px 0;
+      padding: 8px;
+      width: 100%;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <div id="auth">
-    <h2>Ingresa la clave para acceder</h2>
-    <input type="password" id="accesoClave" placeholder="Clave de acceso" />
-    <br />
-    <button onclick="verificarClave()">Entrar</button>
-  </div>
+  <div class="container">
+    <div id="auth">
+      <h2>Acceso al Panel de Administración</h2>
+      <input type="password" id="acceso" placeholder="Clave de acceso" />
+      <button onclick="verificarClave()">Entrar</button>
+    </div>
 
-  <div id="formulario">
-    <h2>Subir nuevo producto</h2>
-    <input type="text" id="nombre" placeholder="Nombre del producto" />
-    <input type="number" id="precio" placeholder="Precio" />
-    <input type="text" id="imagen" placeholder="URL de imagen" />
-    <input type="text" id="estado" placeholder="Estado (ej: disponible)" />
-    <br />
-    <button onclick="subirProducto()">Subir producto</button>
+    <div id="formulario">
+      <h2>Subir nuevo producto</h2>
+      <input type="text" id="nombre" placeholder="Nombre del producto" />
+      <input type="number" id="precio" placeholder="Precio" />
+      <input type="text" id="descripcion" placeholder="Descripción" />
+      <input type="text" id="imagen" placeholder="URL de imagen" />
+      <input type="text" id="estado" placeholder="Estado (activo/inactivo)" />
+      <button onclick="subirProducto()">Subir producto</button>
+    </div>
   </div>
 
   <script>
     const claveCorrecta = "trivo2025!";
 
     function verificarClave() {
-      const claveIngresada = document.getElementById("accesoClave").value;
-      if (claveIngresada === claveCorrecta) {
+      const clave = document.getElementById("acceso").value;
+      if (clave === claveCorrecta) {
         document.getElementById("auth").style.display = "none";
         document.getElementById("formulario").style.display = "block";
       } else {
-        alert("Clave incorrecta. Intenta nuevamente.");
+        alert("Clave incorrecta");
       }
     }
 
     function subirProducto() {
       const nombre = document.getElementById("nombre").value;
       const precio = document.getElementById("precio").value;
+      const descripcion = document.getElementById("descripcion").value;
       const imagen = document.getElementById("imagen").value;
       const estado = document.getElementById("estado").value;
 
-      if (nombre && precio && imagen && estado) {
-        alert(`Producto "${nombre}" subido correctamente.\n\n(Nota: falta conexión real a base de datos)`);
-        // Aquí puedes conectar con una base de datos como Firebase si lo deseas en el futuro.
-      } else {
-        alert("Por favor, completa todos los campos.");
-      }
+      alert("Producto registrado:\n\n" +
+        `Nombre: ${nombre}\nPrecio: $${precio}\nDescripción: ${descripcion}\nImagen: ${imagen}\nEstado: ${estado}`);
     }
   </script>
 </body>
