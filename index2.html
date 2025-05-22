@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Administrador Trivo</title>
+</head>
+<body>
+  <div id="auth">
+    <h2>Ingresa la clave para acceder</h2>
+    <input type="password" id="accessKey" placeholder="Clave">
+    <button onclick="verificarClave()">Entrar</button>
+  </div>
+
+  <div id="formulario" style="display:none;">
+    <h2>Subir nuevo producto</h2>
+    <input type="text" id="nombre" placeholder="Nombre del producto"><br>
+    <input type="number" id="precio" placeholder="Precio"><br>
+    <input type="text" id="descripcion" placeholder="Descripción"><br>
+    <input type="text" id="imagen" placeholder="URL de la imagen"><br>
+    <input type="text" id="estado" placeholder="Estado"><br>
+    <button onclick="subirProducto()">Subir producto</button>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
