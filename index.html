@@ -2,24 +2,59 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Panel Admin - Trivo Store</title>
-  <script defer src="admin.js" type="module"></script>
+  <title>Tienda Trivo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+    .producto {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 15px;
+      border-radius: 8px;
+      display: inline-block;
+      width: 250px;
+    }
+    img {
+      max-width: 100%;
+      height: 150px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Acceso al Panel de Administración</h2>
-  <div id="auth">
-    <input type="password" id="accessKey" placeholder="Clave de acceso" />
-    <button onclick="verificarClave()">Entrar</button>
-  </div>
+  <h1>Bienvenido a Trivo Store</h1>
+  <div id="productos"></div>
 
-  <div id="formulario" style="display:none;">
-    <h3>Subir nuevo producto</h3>
-    <input id="nombre" placeholder="Nombre del producto" /><br/>
-    <input id="precio" placeholder="Precio" /><br/>
-    <textarea id="descripcion" placeholder="Descripción"></textarea><br/>
-    <input type="file" id="imagen" /><br/>
-    <button onclick="subirProducto()">Subir producto</button>
-    <p id="estado"></p>
-  </div>
+  <script>
+    // Aquí simularíamos la lectura de productos desde un JSON (por ahora manual)
+    const productos = [
+      {
+        nombre: "Producto de ejemplo",
+        precio: "$25",
+        descripcion: "Descripción del producto",
+        imagen: "https://via.placeholder.com/200x150",
+        estado: "activo"
+      }
+    ];
+
+    const contenedor = document.getElementById("productos");
+
+    productos.forEach(p => {
+      if (p.estado === "activo") {
+        contenedor.innerHTML += `
+          <div class="producto">
+            <h3>${p.nombre}</h3>
+            <img src="${p.imagen}" alt="Imagen" />
+            <p>${p.descripcion}</p>
+            <strong>${p.precio}</strong>
+          </div>
+        `;
+      }
+    });
+  </script>
 </body>
 </html>
